@@ -9,6 +9,13 @@ import sys
 PATH_SEP = os.path.sep
 
 
+class Chars(object):
+    VRT = '│   '
+    HRZ = '├── '
+    CRN = '└── '
+    NLN = '\n'
+
+
 class Node(object):
 
     def __init__(self, name):
