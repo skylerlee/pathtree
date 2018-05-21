@@ -27,6 +27,26 @@ class Node(object):
             self.subs[name] = Node(name)
         return self.subs[name]
 
+    def dump_lines(self):
+        result = [self.name]
+        # empty subs
+        if not self.subs:
+            return result
+        for sub in self.subs.values():
+            lines = sub.dump_lines()
+            init = lines[:-1]
+            last = lines[-1]
+            for line in init:
+                if line[0].isalpha():
+                    result.append(Chars.HRZ + line)
+                else:
+                    result.append(Chars.VRT + line)
+            if last[0].isalpha():
+                result.append(Chars.CRN + last)
+            else:
+                result.append(Chars.VRT + last)
+        return result
+
     def __str__(self):
         result = ''
         first = True
