@@ -79,6 +79,12 @@ class Tree(object):
             else:
                 node = node.add(seg)
 
+    def dump(self):
+        if self.root is None:
+            return ''
+        else:
+            return '\n'.join(self.root.dump_lines())
+
     def __str__(self):
         return str(self.root)
 
@@ -87,4 +93,4 @@ if __name__ == '__main__':
     tree = Tree()
     for line in sys.stdin:
         tree.add_path(line.strip())
-    print(tree)
+    print(tree.dump())
