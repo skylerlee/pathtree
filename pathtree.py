@@ -28,16 +28,22 @@ class Node(object):
         return self.subs[name]
 
     def _dump_lines(self, ctx):
-        print(self.name)
+        prefix = ''.join(ctx['prefix'])
+        ctx['result'].append(prefix + self.name)
         keys = sorted(self.subs.keys())
         for key in keys:
             sub = self.subs[key]
+            ctx['prefix'].append('- ')
             sub._dump_lines(ctx)
+            ctx['prefix'].pop()
 
     def dump_lines(self):
-        ctx = {}
+        ctx = {
+            'prefix': [],
+            'result': [],
+        }
         self._dump_lines(ctx)
-        return []
+        return ctx['result']
 
     def __str__(self):
         result = ''
