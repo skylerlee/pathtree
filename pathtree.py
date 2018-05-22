@@ -27,25 +27,17 @@ class Node(object):
             self.subs[name] = Node(name)
         return self.subs[name]
 
+    def _dump_lines(self, ctx):
+        print(self.name)
+        keys = sorted(self.subs.keys())
+        for key in keys:
+            sub = self.subs[key]
+            sub._dump_lines(ctx)
+
     def dump_lines(self):
-        result = [self.name]
-        # empty subs
-        if not self.subs:
-            return result
-        for sub in self.subs.values():
-            lines = sub.dump_lines()
-            init = lines[:-1]
-            last = lines[-1]
-            for line in init:
-                if line[0].isalpha():
-                    result.append(Chars.HRZ + line)
-                else:
-                    result.append(Chars.VRT + line)
-            if last[0].isalpha():
-                result.append(Chars.CRN + last)
-            else:
-                result.append(Chars.VRT + last)
-        return result
+        ctx = {}
+        self._dump_lines(ctx)
+        return []
 
     def __str__(self):
         result = ''
