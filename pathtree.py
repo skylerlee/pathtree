@@ -31,9 +31,14 @@ class Node(object):
         prefix = ''.join(ctx['prefix'])
         ctx['result'].append(prefix + self.name)
         keys = sorted(self.subs.keys())
-        for key in keys:
+        size = len(keys)
+        for i, key in enumerate(keys):
             sub = self.subs[key]
-            ctx['prefix'].append('- ')
+            if i == size - 1:
+                seg = Chars.CRN
+            else:
+                seg = Chars.HRZ
+            ctx['prefix'].append(seg)
             sub._dump_lines(ctx)
             ctx['prefix'].pop()
 
