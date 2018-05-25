@@ -11,6 +11,7 @@ PATH_SEP = os.path.sep
 
 
 class Chars(object):
+    SPC = '    '
     VRT = '│   '
     HRZ = '├── '
     CRN = '└── '
