@@ -28,17 +28,17 @@ class Node(object):
             self.subs[name] = Node(name)
         return self.subs[name]
 
-    def _dump_lines(self, lines, level, head):
-        prefix = Chars.SPC * (level - 1) + head
+    def _dump_lines(self, lines, level, prefix):
         lines.append(prefix + self.name)
         values = self.subs.values()
         length = len(values)
         for i, sub in enumerate(values):
             if i == length - 1:
-                seg = Chars.CRN
+                tail = Chars.CRN
             else:
-                seg = Chars.HRZ
-            sub._dump_lines(lines, level + 1, seg)
+                tail = Chars.HRZ
+            indent = Chars.SPC * level
+            sub._dump_lines(lines, level + 1, indent + tail)
 
     def dump_lines(self):
         lines = []
