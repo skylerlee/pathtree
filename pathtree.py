@@ -15,7 +15,6 @@ class Chars(object):
     VRT = '│   '
     HRZ = '├── '
     CRN = '└── '
-    NLN = '\n'
 
 
 class Node(object):
