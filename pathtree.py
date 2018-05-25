@@ -27,9 +27,9 @@ class Node(object):
             self.subs[name] = Node(name)
         return self.subs[name]
 
-    def _dump_lines(self, ctx):
-        prefix = ''.join(ctx['prefix'])
-        ctx['result'].append(prefix + self.name)
+    def _dump_lines(self, lines, level, head):
+        prefix = Chars.SPC * (level - 1) + head
+        lines.append(prefix + self.name)
         keys = sorted(self.subs.keys())
         size = len(keys)
         for i, key in enumerate(keys):
@@ -38,17 +38,12 @@ class Node(object):
                 seg = Chars.CRN
             else:
                 seg = Chars.HRZ
-            ctx['prefix'].append(seg)
-            sub._dump_lines(ctx)
-            ctx['prefix'].pop()
+            sub._dump_lines(lines, level + 1, seg)
 
     def dump_lines(self):
-        ctx = {
-            'prefix': [],
-            'result': [],
-        }
-        self._dump_lines(ctx)
-        return ctx['result']
+        lines = []
+        self._dump_lines(lines, 0, '')
+        return lines
 
     def __str__(self):
         result = ''
