@@ -5,6 +5,7 @@ pathtree
 from __future__ import print_function
 import os
 import sys
+from collections import OrderedDict
 
 PATH_SEP = os.path.sep
 
@@ -20,7 +21,7 @@ class Node(object):
 
     def __init__(self, name):
         self.name = name
-        self.subs = {}
+        self.subs = OrderedDict()
 
     def add(self, name):
         if name not in self.subs:
@@ -30,11 +31,10 @@ class Node(object):
     def _dump_lines(self, lines, level, head):
         prefix = Chars.SPC * (level - 1) + head
         lines.append(prefix + self.name)
-        keys = sorted(self.subs.keys())
-        size = len(keys)
-        for i, key in enumerate(keys):
-            sub = self.subs[key]
-            if i == size - 1:
+        values = self.subs.values()
+        length = len(values)
+        for i, sub in enumerate(values):
+            if i == length - 1:
                 seg = Chars.CRN
             else:
                 seg = Chars.HRZ
