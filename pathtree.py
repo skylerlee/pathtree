@@ -13,8 +13,8 @@ PATH_SEP = os.path.sep
 class Chars(object):
     SPC = '    '
     VRT = '│   '
-    HRZ = '├── '
-    CRN = '└── '
+    JCT = '├── '
+    BTM = '└── '
 
 
 class Node(object):
@@ -34,15 +34,15 @@ class Node(object):
         length = len(values)
         for i, sub in enumerate(values):
             if i == length - 1:
-                tail = Chars.CRN
+                tail = Chars.BTM
                 last = True
             else:
-                tail = Chars.HRZ
+                tail = Chars.JCT
                 last = False
             if prefix:
                 prefix.pop()
                 if cutoff:
-                prefix.append(Chars.SPC)
+                    prefix.append(Chars.SPC)
                 else:
                     prefix.append(Chars.VRT)
             prefix.append(tail)
