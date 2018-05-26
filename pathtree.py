@@ -28,26 +28,31 @@ class Node(object):
             self.subs[name] = Node(name)
         return self.subs[name]
 
-    def _dump_lines(self, result, prefix):
+    def _dump_lines(self, result, prefix, cutoff):
         result.append(''.join(prefix) + self.name)
         values = self.subs.values()
         length = len(values)
         for i, sub in enumerate(values):
             if i == length - 1:
                 tail = Chars.CRN
+                last = True
             else:
                 tail = Chars.HRZ
+                last = False
             if prefix:
                 prefix.pop()
+                if cutoff:
                 prefix.append(Chars.SPC)
+                else:
+                    prefix.append(Chars.VRT)
             prefix.append(tail)
-            sub._dump_lines(result, prefix)
+            sub._dump_lines(result, prefix, last)
             prefix.pop()
 
     def dump_lines(self):
         result = []
         prefix = []
-        self._dump_lines(result, prefix)
+        self._dump_lines(result, prefix, True)
         return result
 
     def __str__(self):
