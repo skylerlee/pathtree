@@ -33,19 +33,17 @@ class Node(object):
         values = self.subs.values()
         length = len(values)
         for i, sub in enumerate(values):
-            if i == length - 1:
-                tail = Chars.BTM
-                last = True
-            else:
-                tail = Chars.JCT
-                last = False
+            last = i == length - 1
             if prefix:
                 prefix.pop()
                 if cutoff:
                     prefix.append(Chars.SPC)
                 else:
                     prefix.append(Chars.VRT)
-            prefix.append(tail)
+            if last:
+                prefix.append(Chars.BTM)
+            else:
+                prefix.append(Chars.JCT)
             sub._dump_lines(result, prefix, last)
             prefix.pop()
 
