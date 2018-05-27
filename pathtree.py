@@ -64,35 +64,30 @@ class Node(object):
         return self.name + result
 
 
-class Tree(object):
+class Tree(Node):
 
     def __init__(self):
-        self.root = None
+        super(Tree, self).__init__('.')
 
     def split_path(self, path):
         return filter(lambda s: s, path.split(PATH_SEP))
 
     def add_path(self, path):
-        if not os.path.isabs(path):
-            path = os.path.abspath(path)
-        node = self.root
+        node = self
         for seg in self.split_path(path):
-            if node is None:
-                node = self.root = Node(seg)
-                continue
-            if node.name == seg:
-                continue
-            else:
-                node = node.add(seg)
+            node = node.add(seg)
+
+    def dump_lines(self):
+        result = []
+        for sub in self.subs.values():
+            result.extend(sub.dump_lines())
+        return result
 
     def dump(self):
-        if self.root is None:
-            return ''
-        else:
-            return '\n'.join(self.root.dump_lines())
+        return '\n'.join(self.dump_lines())
 
     def __str__(self):
-        return str(self.root)
+        return self.dump()
 
 
 if __name__ == '__main__':
