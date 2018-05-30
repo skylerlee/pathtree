@@ -5,14 +5,14 @@ with open('README.md', 'r') as fp:
 
 setuptools.setup(
     name = 'pathtree',
-    version = '0.1.0',
+    version = '0.1.1',
     author = 'skylerlee',
     author_email = 'skyler.ac.lee@gmail.com',
     description = 'Python command line tree printer',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/skylerlee/pathtree',
-    packages = setuptools.find_packages(),
+    packages = ['pathtree'],
     classifiers = (
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
