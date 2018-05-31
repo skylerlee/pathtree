@@ -5,7 +5,7 @@ with open('README.md', 'r') as fp:
 
 setuptools.setup(
     name='pathtree',
-    version='0.1.1',
+    version='0.1.2',
     author='skylerlee',
     author_email='skyler.ac.lee@gmail.com',
     description='Python command line tree printer',
