@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 pathtree
 ~~~~~~~~
@@ -7,6 +8,7 @@ found in the LICENSE file.
 """
 
 from __future__ import print_function
+from __future__ import unicode_literals
 import os
 import sys
 from collections import OrderedDict
