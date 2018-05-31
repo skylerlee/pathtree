@@ -72,13 +72,15 @@ class Node(object):
 
 class Tree(Node):
 
-    def __init__(self):
+    def __init__(self, root='.'):
+        self.root = root
         super(Tree, self).__init__('.')
 
     def split_path(self, path):
         return filter(lambda s: s, path.split(PATH_SEP))
 
     def add_path(self, path):
+        path = os.path.relpath(path, self.root)
         node = self
         for seg in self.split_path(path):
             node = node.add(seg)
