@@ -7,10 +7,8 @@ Use of this source code is governed by the MIT license that can be
 found in the LICENSE file.
 """
 
-from __future__ import print_function
 from __future__ import unicode_literals
 import os
-import sys
 from collections import OrderedDict
 
 PATH_SEP = os.path.sep
@@ -96,10 +94,3 @@ class Tree(Node):
 
     def __str__(self):
         return self.dump()
-
-
-if __name__ == '__main__':
-    tree = Tree()
-    for line in sys.stdin:
-        tree.add_path(line.strip())
-    print(tree.dump())
