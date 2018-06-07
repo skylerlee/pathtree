@@ -4,6 +4,8 @@
 
 ## Installation
 
+`pip install pathtree`
+
 ## Example
 
 * Use in Shell
