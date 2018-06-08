@@ -2,6 +2,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/pathtree.svg)](https://pypi.org/project/pathtree/)
 
+Pythonic command line tree printer
+
 ## Installation
 
 `pip install pathtree`
@@ -28,7 +30,7 @@ pathtree
 from pathtree import Tree
 
 # Init
-tree = Tree()
+tree = Tree(<root>)
 # Add path
 tree.add_path(<path>)
 # Print tree
